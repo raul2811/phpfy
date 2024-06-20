@@ -13,11 +13,6 @@
         <p>Género: {{ $music->genre }}</p>
         <p>Año: {{ $music->year }}</p>
         <p>Duración: {{ $music->duration }}</p>
-        <audio controls>
-            <source src="{{ url($music->file_path) }}" type="audio/flac">
-            Tu navegador no soporta la reproducción de audio.
-        </audio>
-        <br>
         <a href="{{ url('/musics') }}">Volver a la lista</a>
     </div>
     <div class="fixed-player">
