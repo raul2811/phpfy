@@ -9,3 +9,6 @@ Route::get('/', [MusicController::class, 'index']);
 // Ruta para mostrar los detalles de una canción específica
 Route::get('/musics/{id}', [MusicController::class, 'show']);
 
+Route::get('/music-player', function () {
+    return view('music-player');
+});
