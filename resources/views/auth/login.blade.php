@@ -7,8 +7,7 @@
 </head>
 <body>
     <form method="POST" action="{{ route('login') }}">
-        @csrf
-
+        @csrf <!-- {{ csrf_field() }} -->
         <div>
             <label for="email">Email</label>
             <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>

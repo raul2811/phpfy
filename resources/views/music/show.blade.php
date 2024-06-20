@@ -6,12 +6,16 @@
 <div class="container">
     <div class="music-details">
         <h1>{{ $music->title }}</h1>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf <!-- {{ csrf_field() }} -->
+            <button type="submit">Logout</button>
+        </form>
         <p>Artista: {{ $music->artist }}</p>
         <p>Álbum: {{ $music->album }}</p>
         <p>Género: {{ $music->genre }}</p>
         <p>Año: {{ $music->year }}</p>
         <p>Duración: {{ $music->duration }}</p>
-        <a href="{{ url('/') }}">Volver a la lista</a>
+        <a href="{{ url('/music') }}">Volver a la lista</a>
         <div id=.cover-image>
             @if($music->cover_image)
                 <img src="data:image/jpeg;base64,{{ $music->cover_image }}" alt="{{ $music->title }}" class="cover-image">
