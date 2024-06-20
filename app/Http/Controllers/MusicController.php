@@ -11,13 +11,13 @@ class MusicController extends Controller
     public function index()
     {
         $musics = Music::all();
-        return view('index', compact('musics'));
+        return view('music.index', compact('musics'));
     }
 
     public function show($id)
     {
         $music = Music::find($id);
-        return view('show', compact('music'));
+        return view('music.show', compact('music'));
     }
 }
 
