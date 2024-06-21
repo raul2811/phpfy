@@ -6,9 +6,6 @@
 <div class="container">
     <div class="music-details">
         <h1>{{ $music->title }}</h1>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf <!-- {{ csrf_field() }} -->
-            <button type="submit">Logout</button>
         </form>
         <p>Artista: {{ $music->artist }}</p>
         <p>Álbum: {{ $music->album }}</p>

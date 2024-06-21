@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logados', [LoginController::class, 'logados'])->name('logados');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Ruta para listar todas las canciones
