@@ -11,7 +11,7 @@
                     <h3 class="card-header text-center">Formulario Login</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
-                            @csrf
+                        <imput type='hidden' name="_token" value='{{ csrf_token() }}'>
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Email" id="email" class="form-control" name="email" required
                                     autofocus>
