@@ -1,39 +1,39 @@
 @extends('layouts/auth')
 @section('content')
 @if(session('success'))
-    <h1>{{session('success')}}</h1>
+    <h1 class="text-center text-green-500">{{ session('success') }}</h1>
 @endif
-<main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="card">
-                    <h3 class="card-header text-center">Formulario Login</h3>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @vite('resources/css/app.css')
+<main class="login-form bg-gray-900 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto">
+        <div class="flex justify-center">
+            <div class="w-full max-w-md">
+                <div class="bg-gray-800 text-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-center mb-6">Formulario Login</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <div class="form-group mb-3">
-                                <input type="text" placeholder="Email" id="email" class="form-control" name="email" required
-                                    autofocus>
+                            <div class="mb-4">
+                                <input type="text" placeholder="Email" id="email" class="form-control w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:border-green-500" name="email" required autofocus>
                                 @if ($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                <span class="text-red-500 text-sm">{{ $errors->first('email') }}</span>
                                 @endif
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
+                            <div class="mb-4">
+                                <input type="password" placeholder="Password" id="password" class="form-control w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:border-green-500" name="password" required>
                                 @if ($errors->has('password'))
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
                                 @endif
                             </div>
-                            <div class="form-group mb-3">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Recuerdame
-                                    </label>
+                            <div class="mb-4">
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="remember" class="mr-2">
+                                    <label class="text-sm">Recuerdame</label>
                                 </div>
                             </div>
-                            <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Enviar</button>
+                            <div class="mb-4">
+                                <button type="submit" class="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg transition duration-300">Enviar</button>
                             </div>
                         </form>
                     </div>
