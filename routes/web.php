@@ -18,3 +18,7 @@ Route::get('/musics/{id}', [MusicController::class, 'show']);
 Route::get('/music-player', function () {
     return view('music-player');
 });
+
+Route::get('/', function () {
+    return view('home');
+});
