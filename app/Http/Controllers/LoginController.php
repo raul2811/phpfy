@@ -3,68 +3,63 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
-
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
     /**
-	* Función que muestra la vista de logados o la vista con el formulario de Login
-	*/
-	public function index()
-	{
-	    // Comprobamos si el usuario ya está logado
-	    if (Auth::check()) {
+     * Función que muestra la vista de logados o la vista con el formulario de Login
+     */
+    public function index()
+    {
+        // Comprobamos si el usuario ya está logado
+        if (session()->has('user')) {
+            // Si está logado le mostramos la vista de logados
+            return redirect()->route('music.index');
+        }
 
-	        // Si está logado le mostramos la vista de logados
-	        return view('music.show');
-	    }
-
-	    // Si no está logado le mostramos la vista con el formulario de login
-	    return view('auth.login');
-	}
+        // Si no está logado le mostramos la vista con el formulario de login
+        return view('auth.login');
+    }
 
     /**
-	* Función que se encarga de recibir los datos del formulario de login, comprobar que el usuario existe y
-	* en caso correcto logar al usuario
-	*/
-	public function login(Request $request)
-	{
+     * Función que se encarga de recibir los datos del formulario de login, comprobar que el usuario existe y
+     * en caso correcto logar al usuario
+     */
+    public function login(Request $request)
+    {
+        // Validar los campos del formulario
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-	    // Comprobamos que el email y la contraseña han sido introducidos
-	    $request->validate([
-	        'email' => 'required',
-	        'password' => 'required',
-	    ]);
+        // Obtener el email y contraseña del request
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-	    // Almacenamos las credenciales de email y contraseña
-	    $credentials = $request->only('email');//chequear esto
-        
-        echo 'email';
-        echo 'password';
-	    // Si el usuario existe lo logamos y lo llevamos a la vista de "logados" con un mensaje
-	    if (Auth::attempt($credentials)) {
-            echo "se autentico correctamente";
-	        return redirect()->intended('music.show')
-	            ->withSuccess('Logueado Correctamente');
-	    }
+        // Buscar el usuario en la base de datos MongoDB por email
+        $user = User::where('email', $email)->first();
 
-	    // Si el usuario no existe devolvemos al usuario al formulario de login con un mensaje de error
-	    return redirect("/login")->withSuccess('Los datos introducidos no son correctos');
-	}
+        // Verificar si se encontró un usuario y si la contraseña es correcta
+        if ($user && $user->password === $password) {
+            // Autenticación exitosa
+            // Inicia sesión manualmente
+            session()->put('user', $user);
 
-	/**
-	* Función que muestra la vista de logados si el usuario está logado y si no le devuelve al formulario de login
-	* con un mensaje de error
-	*/
-	public function logados()
-	{
-	    if (Auth::check()) {
-	        return view('music.show');
-	    }
+            // Agregar registro de información
+            Log::info('Usuario autenticado correctamente.', ['user_id' => $user->id]);
 
-	    return redirect("/login")->withSuccess('No tienes acceso, por favor inicia sesión');
+            // Redirige al usuario a la página de "logados"
+            return redirect()->route('music.index')->with('success', 'Logueado Correctamente');
+        } else {
+            // Autenticación fallida
+            // Agregar registro de información
+            Log::warning('Intento de login fallido.', ['email' => $email]);
+
+            // Redirige de vuelta al formulario de login con mensaje de error
+            return redirect()->back()->withErrors(['loginError' => 'Los datos introducidos no son correctos']);
+        }
     }
 }
-

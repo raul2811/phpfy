@@ -36,12 +36,24 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
 
+    'api' => [
+        'driver' => 'token',
+        'provider' => 'users',
+        'hash' => false,
+    ],
+
+    'mongodb' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
+
+],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -60,17 +72,16 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
+    ],
+],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
