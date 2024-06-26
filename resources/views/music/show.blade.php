@@ -1,8 +1,7 @@
 @extends('layouts.app')
-
 @section('title', $music->title)
 @section('content')
-
+<main class="login-form">
 <div class="bg-gray-900 text-white min-h-screen w-screen p-6">
     <div class="container mx-auto">
         <div class="music-details mb-8">
@@ -29,5 +28,5 @@
         </div>
     </div>
 </div>
-
+</main>
 @endsection

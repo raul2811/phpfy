@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/logados', [LoginController::class, 'logados'])->name('logados');
+Route::get('/music', [LoginController::class, 'logados'])->name('logados');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Ruta para listar todas las canciones
@@ -17,4 +17,8 @@ Route::get('/musics/{id}', [MusicController::class, 'show']);
 
 Route::get('/music-player', function () {
     return view('music-player');
+});
+
+Route::get('/', function () {
+    return view('index');
 });

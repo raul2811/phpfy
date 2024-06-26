@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class LoginController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class LoginController extends Controller
 	    if (Auth::check()) {
 
 	        // Si está logado le mostramos la vista de logados
-	        return view('auth.logados');
+	        return view('music.show');
 	    }
 
 	    // Si no está logado le mostramos la vista con el formulario de login
@@ -29,6 +31,7 @@ class LoginController extends Controller
 	*/
 	public function login(Request $request)
 	{
+
 	    // Comprobamos que el email y la contraseña han sido introducidos
 	    $request->validate([
 	        'email' => 'required',
@@ -36,16 +39,19 @@ class LoginController extends Controller
 	    ]);
 
 	    // Almacenamos las credenciales de email y contraseña
-	    $credentials = $request->only('email', 'password');
-
+	    $credentials = $request->only('email');//chequear esto
+        
+        echo 'email';
+        echo 'password';
 	    // Si el usuario existe lo logamos y lo llevamos a la vista de "logados" con un mensaje
 	    if (Auth::attempt($credentials)) {
-	        return redirect()->intended('auth.logados')
-	            ->withSuccess('Logado Correctamente');
+            echo "se autentico correctamente";
+	        return redirect()->intended('music.show')
+	            ->withSuccess('Logueado Correctamente');
 	    }
 
 	    // Si el usuario no existe devolvemos al usuario al formulario de login con un mensaje de error
-	    return redirect("/")->withSuccess('Los datos introducidos no son correctos');
+	    return redirect("/login")->withSuccess('Los datos introducidos no son correctos');
 	}
 
 	/**
@@ -55,10 +61,10 @@ class LoginController extends Controller
 	public function logados()
 	{
 	    if (Auth::check()) {
-	        return view('auth.logados');
+	        return view('music.show');
 	    }
 
-	    return redirect("/")->withSuccess('No tienes acceso, por favor inicia sesión');
+	    return redirect("/login")->withSuccess('No tienes acceso, por favor inicia sesión');
     }
 }
 
