@@ -7,7 +7,6 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <script src='main.js'></script>
     @vite('resources/css/app.css')
 </head>
 
@@ -17,7 +16,7 @@
         Descubre la música más reciente
     </div>
 
-    <div class="font-inter text-center text-lg my-8">
+    <div class="font-inter text-center text-lg my-8 text-custom-azulito">
         Escucha las tendencias, la música más escuchada y los artistas más escuchados. Explora un mundo de creatividad.
     </div>
     <div class="flex justify-center px-4 my-8">
@@ -45,15 +44,15 @@
                 Explora las pistas de música y listas de reproducción más recientes y populares.
             </div>
             <div class="my-8">
-                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">Tendencias Ahora</h2>
+                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">- Tendencias Ahora</h2>
                 <p class="text-lg font-inter text-custom-azulito mt-4 text-justify pl-4">Mantente al día con las últimas tendencias musicales y descubre nuevos artistas.</p>
             </div>
             <div class="my-8">
-                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">Lista de Éxitos</h2>
+                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">- Lista de Éxitos</h2>
                 <p class="text-base font-inter text-custom-azulito mt-4 text-justify pl-4">Escucha las canciones más reproducidas en varios géneros.</p>
             </div>
             <div class="my-8">
-                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">Reproductor Web de alta calidad</h2>
+                <h2 class="text-3xl font-inter text-custom-azulito text-justify pl-4">- Reproductor Web de alta calidad</h2>
                 <p class="text-base font-inter text-custom-azulito mt-4 text-justify pl-4">Déjate envolver por la calidad sonora que logramos emitir.</p>
             </div>
         </div>
@@ -62,6 +61,38 @@
             <img src="{{ asset('images/sunflower.jpg') }}" alt="Sunflower" class="object-cover h-2/3 w-3/3">
         </div>
     </div>
+  </div>
+  
+
+    
+    <div class="font-inter text-custom-azulito text-center text-5xl font-bold my-8 pt-10">
+        Lo mas escuchado en 2024
+    </div>
+
+    <div class="max-w-full mx-auto my-12\">
+    <div class="flex justify-center space-x-4 mb-4">
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+    </div>
+    <div class="flex justify-center space-x-4 mb-4">
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+    </div>
+    <div class="flex justify-center space-x-4">
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
+        <div class="w-1/4 bg-gray-200 h-64 flex justify-center items-center">Imagen de momento</div>
     </div>
 </div>
 </body>
+
+
+    
+
+
+
+
+
+
