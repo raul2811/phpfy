@@ -20,5 +20,5 @@ Route::get('/music-player', function () {
 });
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 });
