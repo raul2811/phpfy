@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts/app')
 
 @section('title', $music->title)
-@section('content')
 
 <div class="w-full p-8 bg-black absolute top-0 left-0 h-full overflow-y-auto z-10">
     <div class="music-details mb-8">
@@ -31,7 +30,7 @@
         </audio>
     </div>
 </div>
-
     </div>
 </div>
-@endsection
+
+
