@@ -13,45 +13,114 @@
 
     <!-- Estilo de gradiente que se esta utilizando -->
     <style>
-    .gradient-text {
-        background: -webkit-linear-gradient(90deg, #4b28a4, #df5bf1);
-        background: linear-gradient(90deg, #4b28a4, #df5bf1);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-fill-color: transparent;
-    }
+        .gradient-text {
+            background: -webkit-linear-gradient(90deg, #4b28a4, #df5bf1);
+            background: linear-gradient(90deg, #4b28a4, #df5bf1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
 
-    .feature-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
 
-    .feature-container {
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-        transition: all 0.3s ease;
-    }
 
-    .feature-container:hover {
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-        transform: scale(1.05); /* Añade un pequeño efecto de escalado opcional */
-    }
-    </style>
+        .feature-animation {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            transition: all 0.3s ease;
+        }
+
+        .feature-animation:hover {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: scale(1.05);
+        }
+
+
+        .slide-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .slide-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+            .fade-in-up {
+                opacity: 0;
+                animation: fadeInUp 0.6s ease-out forwards;
+            }
+
+            .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+            .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+            .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+            .fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+            .fade-in-up:nth-child(5) { animation-delay: 0.5s; }
+            .fade-in-up:nth-child(6) { animation-delay: 0.6s; }
+            .fade-in-up:nth-child(7) { animation-delay: 0.7s; }
+            .fade-in-up:nth-child(8) { animation-delay: 0.8s; }
+            .fade-in-up:nth-child(9) { animation-delay: 0.9s; }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+                }
+                70% {
+                    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+                }
+            }
+
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+
+        .faq-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .faq-group {
+            flex: 0 0 100%;
+}
+</style>
+
 
 </head>
-
 <body class="bg-black">
 
     <!-- En este parte se llama al componente navbar que ya fue prehecho -->
     @include('components.navbar')
 
     <!-- En este parte se hace un flex box para tener en la misma caja el titular y la cuadricula -->
-    <div class="container mx-auto px-4 py-48 flex flex-col lg:flex-row items-center justify-between">
+    <div class="container mx-auto px-4 py-36 flex flex-col lg:flex-row items-center justify-between feature-container slide-in"">
         <div class="lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
             <span class="text-left text-xl font-semibold text-white mb-2 block">Musica para <span class="gradient-text">todos </span></span>
             <h1 class="text-left text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-none font-inter text-white mb-6">
@@ -63,23 +132,23 @@
             </h2>
             <div class="flex flex-col sm:flex-row gap-4">
                 <button class="text-white px-7 py-2 rounded-full w-full sm:w-48 h-12 border border-white hover:bg-gray-700 transition duration-300">Explorar Ahora</button>
-                <button class="text-white px-7 py-2 rounded-full w-full sm:w-48 h-12 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition duration-300">Prueba Gratis</button>
+                <button class="text-white px-7 py-2 rounded-full w-full sm:w-48 h-12 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition duration-300 pulse-button">Prueba Gratis</button>
             </div>
         </div>
 
         <div class="lg:w-1/2">
             <div class="grid grid-cols-3 gap-2">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
 
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
 
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
-                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
+                <img src="{{ asset('images/beatles.jpg') }}" alt="Beatles" class="w-full h-auto object-cover rounded-lg fade-in-up">
             </div>
         </div>
     </div>
@@ -104,7 +173,7 @@
             <div class="feature-grid flex flex-col sm:flex-row gap-8">
 
                 <!-- Funcionalidad 1: Personalización -->
-                <div class="feature-container flex-1 rounded-lg border border-red-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(255, 0, 0, 0.2);">
+                <div class="feature-animation flex-1 rounded-lg border border-red-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(255, 0, 0, 0.2);">
                     <div class="feature-icon" style="background: rgba(255, 0, 0, 0.2);">
                         <img src="{{ asset('images/bomba.svg') }}" alt="Personalización" class="w-12 h-12">
                     </div>
@@ -113,7 +182,7 @@
                 </div>
 
                 <!-- Funcionalidad 2: Compartir -->
-                <div class="feature-container flex-1 rounded-lg border border-yellow-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(255, 255, 0, 0.2);">
+                <div class="feature-animation flex-1 rounded-lg border border-yellow-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(255, 255, 0, 0.2);">
                     <div class="feature-icon" style="background: rgba(255, 255, 0, 0.2);">
                         <img src="{{ asset('images/wifi.svg') }}" alt="Compartir" class="w-12 h-12">
                     </div>
@@ -122,7 +191,7 @@
                 </div>
 
                 <!-- Funcionalidad 3: Exploración -->
-                <div class="feature-container flex-1 rounded-lg border border-cyan-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(0, 255, 255, 0.2);">
+                <div class="feature-animation flex-1 rounded-lg border border-cyan-200 py-32 flex flex-col items-center text-center" style="border-color: rgba(0, 255, 255, 0.2);">
                     <div class="feature-icon" style="background: rgba(0, 255, 255, 0.2);">
                         <img src="{{ asset('images/music.svg') }}" alt="Exploración" class="w-12 h-12">
                     </div>
@@ -134,7 +203,7 @@
     </div>
 
     <!-- Contenedor de descubrimiento musical -->
-    <div class="container mx-auto px-4 py-8 flex flex-col lg:flex-row items-center justify-between">
+    <div class="container mx-auto px-4 py-8 flex flex-col lg:flex-row items-center justify-between feature-container slide-in ">
         <div class="lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
             <span class="text-left text-xl font-semibold text-white mb-2 block">Descubrir y escuchar <span class="gradient-text">música</span></span>
             <h1 class="text-left text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-none font-inter text-white mb-6">
@@ -189,7 +258,7 @@
         <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="feature-grid flex flex-col sm:flex-row gap-8">
                 <!-- Plan 1: Básico -->
-                <div class="feature-container flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
+                <div class="feature-animation  flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
                     <h4 class="plan-duration text-sm font-semibold text-gray-400 uppercase mb-2">Mensual</h4>
                     <h3 class="plan-price text-3xl font-bold text-white mb-2">Gratuito</h3>
                     <p class="text-gray-300 mb-4">Comienza tu viaje musical</p>
@@ -203,7 +272,7 @@
                 </div>
 
                 <!-- Plan 2: Profesional -->
-                <div class="feature-container flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
+                <div class="feature-animation  flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
                     <h4 class="plan-duration text-sm font-semibold text-gray-400 uppercase mb-2">Mensual</h4>
                     <h3 class="plan-price text-3xl font-bold text-white mb-2">$6.20 al mes</h3>
                     <p class="text-gray-300 mb-4">Eleva tu experiencia musical</p>
@@ -217,7 +286,7 @@
                 </div>
 
                 <!-- Plan 3: Familiar -->
-                <div class="feature-container flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
+                <div class="feature-animation  flex-1 rounded-lg border border-white py-20 px-10 flex flex-col items-center text-center">
                     <h4 class="plan-duration text-sm font-semibold text-gray-400 uppercase mb-2">Mensual</h4>
                     <h3 class="plan-price text-3xl font-bold text-white mb-2">$12.50 al mes</h3>
                     <p class="text-gray-300 mb-4">Música para toda la familia</p>
@@ -233,7 +302,80 @@
         </div>
     </div>
 
-    <script>
+    <div class="w-full feature-container slide-in2">
+    <div class="mx-auto text-center py-8 pb-2"> 
+        <div class="lg:mx-auto mb-8 lg:mb-0">
+            <h1 class="text-center text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-none font-inter text-white mb-6">
+                <span class="block mb-2">Preguntas <span class="gradient-text">Frecuentes </span> que podemos responder</span>
+            </h1>
+            <p class="text-center text-xl text-gray-400 mt-4">
+                Esta es una recopilacion de preguntas hechas por nuestros usuarios
+            </p> 
+        </div>
+    </div>
+</div>
+
+   <!-- Sección de Preguntas Frecuentes -->
+    <div class="w-full bg-black py-8 feature-container slide-in">
+        <div class="container mx-auto px-4">
+            <div class="faq-carousel overflow-hidden">
+                <div class="faq-slider flex transition-transform duration-500 ease-in-out">
+                    <!-- Grupo 1 -->
+                    <div class="faq-group flex-shrink-0 w-full grid grid-cols-3 gap-4">
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Cómo funciona el plan familiar?</h3>
+                            <p class="text-gray-300">El plan familiar permite hasta 6 cuentas individuales con todas las ventajas del plan premium.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Puedo cancelar mi suscripción en cualquier momento?</h3>
+                            <p class="text-gray-300">Sí, puedes cancelar tu suscripción en cualquier momento sin penalización.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Qué calidad de audio ofrecen?</h3>
+                            <p class="text-gray-300">Ofrecemos calidad de audio de hasta 320kbps en planes premium.</p>
+                        </div>
+                    </div>
+                    <!-- Grupo 2 -->
+                    <div class="faq-group flex-shrink-0 w-full grid grid-cols-3 gap-4">
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Estan presentes canciones antiguas?</h3>
+                            <p class="text-gray-300">Si tenemos una amplia cantidad de musica de todos los estilos y generos.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Funciona offline?</h3>
+                            <p class="text-gray-300">Sí, los usuarios premium pueden descargar música para escuchar sin conexión.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Cuántas canciones tiene su catálogo?</h3>
+                            <p class="text-gray-300">Nos encontramos en constante ampliacion de catalogo.</p>
+                        </div>
+                    </div>
+                    <!-- Grupo 3 -->
+                    <div class="faq-group flex-shrink-0 w-full grid grid-cols-3 gap-4">
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Tienen podcasts?</h3>
+                            <p class="text-gray-300">Sí, ofrecemos una amplia variedad de podcasts en diferentes categorías.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Cómo funciona la recomendación de música?</h3>
+                            <p class="text-gray-300">Utilizamos algoritmos avanzados para recomendar música basada en tus gustos y hábitos de escucha.</p>
+                        </div>
+                        <div class="bg-transparent border border-white rounded-lg p-6">
+                            <h3 class="text-white font-semibold mb-2">¿Puedo usar la misma cuenta en varios dispositivos?</h3>
+                            <p class="text-gray-300">Sí, puedes usar tu cuenta en múltiples dispositivos, pero solo puedes reproducir en uno a la vez con una cuenta individual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-8 space-x-4">
+                <button id="prevFAQ" class="bg-transparent text-white px-6 py-2 rounded-full border border-white hover:bg-white hover:text-purple-900 transition duration-300">Anterior</button>
+                <button id="nextFAQ" class="bg-transparent text-white px-6 py-2 rounded-full border border-white hover:bg-white hover:text-purple-900 transition duration-300">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+<-! Script de cambio de planes >
+<script>
     $('#togglePlans').on('click', function() {
         var durationElements = $('.plan-duration');
         var priceElements = $('.plan-price');
@@ -255,11 +397,85 @@
                     if (index === 2) $(this).text('$12.50 al mes');
                 });
                 $(this).text('Cambiar a Planes Anuales');
+                
             }
         });
-    </script>
+</script>
 
-    @include('components.footer')
+<-! Primera animacion integrada >
+ <script>
+    $(document).ready(function() {
+    function checkSlide() {
+        $('.slide-in').each(function() {
+            const slideInAt = ($(window).scrollTop() + $(window).height()) - $(this).height() / 8;
+            const elementBottom = $(this).offset().top + $(this).height();
+            const isHalfShown = slideInAt > $(this).offset().top;
+            const isNotScrolledPast = $(window).scrollTop() < elementBottom;
+            
+            if (isHalfShown && isNotScrolledPast) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    }
+
+    $(window).on('scroll', checkSlide);
+    $(window).on('resize', checkSlide);
+
+    checkSlide();
+});
+
+</script>
+
+<!-! Segunda animacion integrada >
+<script>
+$(document).ready(function() {
+    const $slider = $('.faq-slider');
+    const $groups = $('.faq-group');
+    const groupWidth = $groups.outerWidth(true);
+    let currentIndex = 0;
+
+    $slider.append($groups.clone());
+
+    function moveSlider(direction) {
+        currentIndex += direction;
+        const totalGroups = $groups.length;
+
+        if (currentIndex < 0) {
+            currentIndex = totalGroups - 1;
+            $slider.css('transform', `translateX(-${totalGroups * groupWidth}px)`);
+            $slider.css('transition', 'none');
+            setTimeout(() => {
+                $slider.css('transition', 'transform 0.5s ease-in-out');
+                $slider.css('transform', `translateX(-${currentIndex * groupWidth}px)`);
+            }, 50);
+        } else if (currentIndex >= totalGroups) {
+            currentIndex = 0;
+            $slider.css('transform', `translateX(-${currentIndex * groupWidth}px)`);
+            $slider.css('transition', 'none');
+            setTimeout(() => {
+                $slider.css('transition', 'transform 0.5s ease-in-out');
+                $slider.css('transform', 'translateX(0)');
+            }, 50);
+        } else {
+            $slider.css('transform', `translateX(-${currentIndex * groupWidth}px)`);
+        }
+    }
+
+    $('#nextFAQ').on('click', function() {
+        moveSlider(1);
+    });
+
+    $('#prevFAQ').on('click', function() {
+        moveSlider(-1);
+    });
+
+    setInterval(() => moveSlider(1), 5000);
+});
+</script>
+
+@include('components.footer')
 
 </body>
 
