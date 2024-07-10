@@ -82,11 +82,6 @@
         <h2 class="text-xl font-bold mb-4">Menu</h2> 
         <ul class="space-y-2 pl-4"> 
             <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Home</a></li>
-        <hr class="my-4 border-gray-700"> 
-        <h2 class="text-xl font-bold mb-4">Perfil</h2> 
-        <ul class="space-y-2 pl-4"> 
-            <li><a href="#" id="user-options" class="text-lg hover:text-gray-400 transition duration-300">Usuario</a></li>
-        </ul>
         </div>
 
     <!-- Contenido Principal -->
@@ -97,7 +92,7 @@
 
         <h2 class="text-2xl font-bold mb-4">Todas las Canciones</h2>
         <div class="mb-8 pb-20">
-            <div class="grid grid-cols-5 gap-4">
+            <div class="grid grid-cols-3 gap-4">
                 @foreach($musics as $music)
                     <div class="bg-transparent p-4 rounded-lg hover:bg-gray-300 transition duration-300">
                         <a href="{{ url('/musics', $music->_id) }}" class="flex flex-col items-center space-y-4">
@@ -135,38 +130,6 @@
                 adjustLayout();
             });
         });
-
-        $('#user-options').click(function(e) {
-        e.preventDefault();
-        var userContent = `
-            <div class="p-4 bg-black text-white rounded-xl shadow-2xl slide-up">
-                <h2 class="text-2xl font-bold mb-4 gradient-text">Opciones de Usuario</h2>
-                <ul class="space-y-4">
-                    <li>
-                        <button class="toggle-option block w-full py-2 px-4 bg-transparent hover:bg-gray-800 text-white font-bold rounded-lg transition duration-300 border border-white text-center">
-                            Cambiar Contraseña
-                        </button>
-                        <div class="option-content hidden mt-2">
-                            <input type="password" placeholder="Nueva contraseña" class="w-full p-2 bg-transparent text-white rounded mb-2 border border-gray-700 focus:border-white transition duration-300">
-                            <input type="password" placeholder="Confirmar contraseña" class="w-full p-2 bg-transparent text-white rounded mb-2 border border-gray-700 focus:border-white transition duration-300">
-                            <button class="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition duration-300">
-                                Guardar cambios
-                            </button>
-                        </div>
-                    </li>
-                    <li>
-                        <button class="toggle-option block w-full py-2 px-4 bg-transparent hover:bg-gray-800 text-white font-bold rounded-lg transition duration-300 border border-white text-center">
-                            Borrar Cuenta
-                        </button>
-                        <div class="option-content hidden mt-2">
-                            <button class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition duration-300">
-                                Confirmar borrado de cuenta
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        `;
         $('#song-details-sidebar').removeClass('hidden').addClass('show');
         $('#main-content').addClass('sidebar-open');
         $('#sidebar-content').html(userContent);

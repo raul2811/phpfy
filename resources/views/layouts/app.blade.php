@@ -13,6 +13,5 @@
     <div class="container">
         @yield('content')
     </div>
-    @include('/layouts/music_player')
 </body>
 </html>
