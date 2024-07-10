@@ -54,6 +54,12 @@
         z-index: 1100; 
     }
 
+    #sidebar-content {
+    background-color: #000; 
+    width: 100%; 
+    height: 100%; 
+    }
+
     .main-content {
         transition: margin-right 0.3s ease;
     }
@@ -76,6 +82,7 @@
         <h2 class="text-xl font-bold mb-4">Menu</h2> 
         <ul class="space-y-2 pl-4"> 
             <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Home</a></li>
+            <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Nueva Sección</a></li>
         </ul>
         <hr class="my-4 border-gray-700"> 
         <h2 class="text-xl font-bold mb-4">Biblioteca</h2> 
@@ -83,7 +90,12 @@
             <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Canciones</a></li>
             <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Albumes</a></li>
         </ul>
-    </div>
+        <hr class="my-4 border-gray-700"> 
+        <h2 class="text-xl font-bold mb-4">Perfil</h2> 
+        <ul class="space-y-2 pl-4"> 
+            <li><a href="#" id="user-options" class="text-lg hover:text-gray-400 transition duration-300">Usuario</a></li>
+        </ul>
+        </div>
 
     <!-- Contenido Principal -->
     <div id="main-content" class="main-content flex-1 ml-[20%] p-6 bg-black min-h-screen overflow-y-auto">
@@ -176,7 +188,6 @@
         <div id="sidebar-content"></div>
     </div>
 
-    
 </div>
 
 <script>
@@ -192,6 +203,50 @@
                 adjustLayout();
             });
         });
+
+        $('#user-options').click(function(e) {
+        e.preventDefault();
+        var userContent = `
+            <div class="p-4 bg-black text-white rounded-xl shadow-2xl slide-up">
+                <h2 class="text-2xl font-bold mb-4 gradient-text">Opciones de Usuario</h2>
+                <ul class="space-y-4">
+                    <li>
+                        <button class="toggle-option block w-full py-2 px-4 bg-transparent hover:bg-gray-800 text-white font-bold rounded-lg transition duration-300 border border-white text-center">
+                            Cambiar Contraseña
+                        </button>
+                        <div class="option-content hidden mt-2">
+                            <input type="password" placeholder="Nueva contraseña" class="w-full p-2 bg-transparent text-white rounded mb-2 border border-gray-700 focus:border-white transition duration-300">
+                            <input type="password" placeholder="Confirmar contraseña" class="w-full p-2 bg-transparent text-white rounded mb-2 border border-gray-700 focus:border-white transition duration-300">
+                            <button class="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition duration-300">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </li>
+                    <li>
+                        <button class="toggle-option block w-full py-2 px-4 bg-transparent hover:bg-gray-800 text-white font-bold rounded-lg transition duration-300 border border-white text-center">
+                            Borrar Cuenta
+                        </button>
+                        <div class="option-content hidden mt-2">
+                            <button class="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition duration-300">
+                                Confirmar borrado de cuenta
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        `;
+        $('#song-details-sidebar').removeClass('hidden').addClass('show');
+        $('#main-content').addClass('sidebar-open');
+        $('#sidebar-content').html(userContent);
+
+        $('.toggle-option').click(function() {
+            var $content = $(this).next('.option-content');
+            
+            $('.option-content').not($content).slideUp();
+            
+            $content.slideToggle();
+        });
+    });
 
         function adjustLayout() {
             var playerHeight = $('#music-player').outerHeight();
