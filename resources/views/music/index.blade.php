@@ -82,14 +82,6 @@
         <h2 class="text-xl font-bold mb-4">Menu</h2> 
         <ul class="space-y-2 pl-4"> 
             <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Home</a></li>
-            <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Nueva Sección</a></li>
-        </ul>
-        <hr class="my-4 border-gray-700"> 
-        <h2 class="text-xl font-bold mb-4">Biblioteca</h2> 
-        <ul class="space-y-2 pl-4"> 
-            <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Canciones</a></li>
-            <li><a href="#" class="text-lg hover:text-gray-400 transition duration-300">Albumes</a></li>
-        </ul>
         <hr class="my-4 border-gray-700"> 
         <h2 class="text-xl font-bold mb-4">Perfil</h2> 
         <ul class="space-y-2 pl-4"> 
@@ -101,18 +93,6 @@
     <div id="main-content" class="main-content flex-1 ml-[20%] p-6 bg-black min-h-screen overflow-y-auto">
         <h1 class="text-3xl font-bold mb-8">Listo para disfrutar de esta experiencia sonora </h1>
         
-        <!-- Barra de búsqueda -->
-        <div class="mb-8 max-w-6xl"> 
-            <div class="flex items-center">
-                <input type="text" placeholder="Buscar música..." class="w-full px-4 h-12 rounded-l-lg bg-gray-300 text-white focus:outline-none">
-                <button class="px-6 h-12 bg-purple-600 text-white rounded-r-lg hover:bg-purple-700 focus:outline-none flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-
         <hr class="my-8 border-gray-300">
 
         <h2 class="text-2xl font-bold mb-4">Todas las Canciones</h2>
